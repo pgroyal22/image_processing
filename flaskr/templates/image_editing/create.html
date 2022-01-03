@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Edit{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method='post' enctype=multipart/form-data>
+    <label =>Select A File</label> 	  
+    <input type='file' name=file>
+    <label =>Select An Option</label>
+
+    <table border = '0' width = 60% align="left">
+
+     <tr>
+      <td><input type="radio" name="preset" value="gray">&nbsp;Gray</td>
+      <td><input type="radio" name="preset" value="edge">&nbsp;Edge</td>
+      <td><input type="radio" name="preset" value="solar">&nbsp;Solar</td>
+     </tr>
+    </table>
+
+    <input type="submit" value="Upload and Save">
+  </form>
+{% endblock %}

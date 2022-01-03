@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- base.html provides a base template for the rest of the templates to extend -->
+<title>{% block title %}{% endblock %} - Phil's Image Editing</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1>Phil's Image Editing</h1>
+  <ul>
+    {% if g.user %}
+      <!-- if statement above controls whether url for logging out is served -->
+      <li><span>{{ g.user['username'] }}</span>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Register</a>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    {% endif %}
+  </ul>
+</nav>
+
+<!-- below content section is overrided by templates that extend base.html -->
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
